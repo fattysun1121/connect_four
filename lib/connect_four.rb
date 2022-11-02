@@ -11,24 +11,28 @@ class ConnectFour
     # initialize instance variables
   end
 
-  def toggle_player!
+  def toggle_player
     # switch player
   end
 
-  def play_again?
+  def play_again
     # ask if the user want to play again
   end
   
-  def run 
-    # run the game
-    # display board
+  def play_game
     # loop until game over
     # ask for column
     # add piece 
     # switch player
     # end
+  end 
+
+  def run 
+    # run the game
+    # display board
+    # call play_game
     # output game over message
-    # play agian?
+    # play agian
   end
 
   private 
