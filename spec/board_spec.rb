@@ -33,6 +33,19 @@ describe Board do
         expect(added).to be false
       end
     end
+
+    context 'when the column is out of bounds' do 
+      it 'asks the player to choose column within the bounds' do 
+        ask_message= 'Please choose from column 1 - 7!'
+        expect(board_add).to receive(:puts).with(ask_message)
+        board_add.add_piece('soccer', 8)
+      end
+      
+      it 'return false' do
+        added = added = board_add.add_piece('soccer', 0)
+        expect(added).to be false
+      end
+    end
   end
 
   describe '#to_s' do 
@@ -109,6 +122,20 @@ describe Board do
     context 'when soccer has connected four pieces vertically' do 
       before do
         4.times { board_over.add_piece('soccer', 3) } 
+      end
+
+      xit 'returns soccer' do
+        over = board_over.game_over?
+        expect(over).to eq('soccer')
+      end
+    end
+
+    context 'when soccer has connected four pieces horizontally' do 
+      before do
+        board_over.add_piece('soccer', 1)
+        board_over.add_piece('soccer', 2)
+        board_over.add_piece('soccer', 3)
+        board_over.add_piece('soccer', 4)
       end
 
       xit 'returns soccer' do

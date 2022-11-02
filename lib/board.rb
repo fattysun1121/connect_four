@@ -4,6 +4,10 @@ class Board
   end 
 
   def add_piece(player, player_col)
+    if player_col - 1 < 0 || player_col - 1 >= 7
+      puts 'Please choose from column 1 - 7!'
+      return false
+    end
     row = lowest_empty_row(player_col - 1)
     if row == -1 
       puts 'The column is full, please pick another column.'
@@ -31,7 +35,10 @@ class Board
   end
   
   def game_over?
+    # check horizontal
     
+    # check vertical
+    # check diagonal
   end 
 
   private 
