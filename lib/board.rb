@@ -1,21 +1,46 @@
 class Board 
-  
-  def initialzie(grid=Array.new(6) { Array.new(7) })
+  def initialize(grid=Array.new(6) { Array.new(7) })
     @grid = grid
   end 
 
-  def add_piece(player, column)
-    # add piece for a player
+  def add_piece(player, player_col)
+    row = lowest_empty_row(player_col - 1)
+    if row == -1 
+      puts 'The column is full, please pick another column.'
+      return false
+    end
+    @grid[row][player_col - 1] = player
+    true
   end
 
-  def to_s 
+  def to_s
+    string_rep = ''
+    @grid.each do |row|
+      row.each do |col|
+        if col.nil?
+          string_rep += '⚪ '
+        elsif col == 'soccer'
+          string_rep += '⚽ '
+        else
+          string_rep += '⚾ '
+        end
+      end
+      string_rep += "\n"
+    end
+    string_rep
   end
-
-  def column_full?(column)
-    # check if column's full
-  end
-
+  
   def game_over?
-    # check if anyone has won or if it is a tie
+    
   end 
+
+  private 
+   
+  def lowest_empty_row(column)
+    @grid.length.times do |i|
+      row = @grid.length - 1 - i
+      return row if @grid[row][column].nil?
+    end
+    return -1 
+  end
 end
