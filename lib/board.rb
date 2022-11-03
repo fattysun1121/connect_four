@@ -36,18 +36,27 @@ class Board
   
   def game_over?
     # check horizontal
-    
+    @grid.each do |row|
+      case row
+      in [*, 'soccer', 'soccer', 'soccer', 'soccer', *]
+        return 'soccer'
+      in [*, 'baseball', 'baseball', 'baseball', 'baseball', *]
+        return 'baseball'
+      end
+    end
     # check vertical
     # check diagonal
-  end 
+    return false
+  end
+   
 
   private 
    
   def lowest_empty_row(column)
     @grid.length.times do |i|
       row = @grid.length - 1 - i
-      return row if @grid[row][column].nil?
-    end
+      (return row) if @grid[row][column].nil?
     return -1 
+    end
   end
 end
