@@ -114,7 +114,7 @@ describe Board do
   describe '#game_over?' do 
     subject(:board_over) { described_class.new }
     context 'when no one has connected four pieces' do
-      xit 'returns false' do
+      it 'returns false' do
         over = board_over.game_over?
         expect(over).to be false
       end
@@ -124,7 +124,7 @@ describe Board do
         4.times { board_over.add_piece('soccer', 3) } 
       end
 
-      xit 'returns soccer' do
+      it 'returns soccer' do
         over = board_over.game_over?
         expect(over).to eq('soccer')
       end
@@ -138,7 +138,7 @@ describe Board do
         board_over.add_piece('soccer', 4)
       end
 
-      xit 'returns soccer' do
+      it 'returns soccer' do
         over = board_over.game_over?
         expect(over).to eq('soccer')
       end
@@ -152,14 +152,15 @@ describe Board do
     end
 
     context 'when no one has connected four pieces but the board is full' do 
-      before do 
-        7.times do |col| 
-          6.times { board_over.add_piece('soccer', col) }
-        end
-      end
-
-      xit 'returns tie' do 
-        over = board_over.game_over?
+      subject(:board_tie) { described_class.new(grid) }
+      let(:grid) { [['soccer', 'soccer', 'baseball', 'soccer', 'baseball', 'baseball', 'soccer'], 
+                    ['baseball', 'baseball', 'soccer', 'baseball', 'soccer', 'soccer', 'baseball'],
+                    ['soccer', 'soccer', 'soccer', 'baseball', 'baseball', 'baseball', 'soccer'],
+                    ['baseball', 'baseball', 'soccer', 'baseball', 'baseball', 'soccer', 'baseball'],
+                    ['soccer', 'soccer', 'baseball', 'soccer', 'soccer', 'soccer', 'baseball'],
+                    ['baseball', 'soccer', 'soccer', 'baseball', 'baseball', 'soccer', 'baseball']] }
+      it 'returns tie' do 
+        over = board_tie.game_over?
         expect(over).to eq('tie')
       end
     end
