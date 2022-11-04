@@ -144,7 +144,17 @@ describe Board do
       end
     end
 
-    context 'when soccer has connected four pieces diagonally' do 
+    context 'when soccer has connected four pieces diagonally' do
+      before do 
+        3.times { board_over.add_piece('baseball', 4) }
+        2.times { board_over.add_piece('baseball', 3) }
+        board_over.add_piece('baseball', 2)
+        board_over.add_piece('soccer', 1)
+        board_over.add_piece('soccer', 2)
+        board_over.add_piece('soccer', 3)
+        board_over.add_piece('soccer', 4)
+      end 
+      
       xit 'returns soccer' do
         over = board_over.game_over?
         expect(over).to eq('soccer')
