@@ -8,7 +8,9 @@ class Board
       puts 'Please choose from column 1 - 7!'
       return false
     end
+
     row = lowest_empty_row(player_col - 1)
+
     if row == -1 
       puts 'The column is full, please pick another column.'
       return false
@@ -64,9 +66,26 @@ class Board
       else
       end
     end
-    
+
     # check diagonal
- 
+    3.times do |row|
+      4.times do |col|
+        left_diagonal = [@grid[row][col], @grid[row + 1][col + 1], @grid[row + 2][col + 2], @grid[row + 3][col + 3]]
+        right_diagonal = [@grid[row][col + 3], @grid[row + 1][col + 2], 
+                          @grid[row + 2][col + 1], @grid[row + 3][col]]
+        diagonals = [left_diagonal, right_diagonal]
+        diagonals.each do |diagonal|
+          case diagonal
+          in [*, 'soccer', 'soccer', 'soccer', 'soccer', *]
+            return 'soccer'
+          in [*, 'baseball', 'baseball', 'baseball', 'baseball', *]
+            return 'baseball'
+          else
+          end
+        end
+      end
+    end
+   
     # check tie 
     if full? 
       'tie'
@@ -75,7 +94,6 @@ class Board
     end
   end
    
-
   private 
    
   def lowest_empty_row(column)

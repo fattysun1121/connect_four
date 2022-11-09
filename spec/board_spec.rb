@@ -155,7 +155,7 @@ describe Board do
         board_over.add_piece('soccer', 4)
       end 
       
-      xit 'returns soccer' do
+      it 'returns soccer' do
         over = board_over.game_over?
         expect(over).to eq('soccer')
       end
